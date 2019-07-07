@@ -1,2 +1,2 @@
-# Linux-network-driver
-it is an example to create network driver under linux
+# RegXP
+it is an example to access PCIE device CFG and MMIO address under linux
