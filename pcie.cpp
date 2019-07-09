@@ -22,6 +22,20 @@ using namespace std;
 
 pcie::pcie()
 {
+	BusN=0x0;
+	DevN=0x0;
+	FunN=0x0;
+	mmioaddr=acpi_table();
+	result=0x0;
+	rcBusN=0x0;
+	rcDevN=0x0;
+	rcFunN=0x0;
+	speed=0x0;
+	width=0x0;
+	L0sEn=0x0;
+	L1En=0x0;
+	L0sCap=0x0;
+	L1Cap=0x0;
 
 }
 
@@ -159,7 +173,7 @@ void pcie::mmio_w(unsigned long addr,unsigned int data)
      close(fd);
 }
 
-unsigned int pcie::get_rcBDF(int sel)
+unsigned int pcie::get_rcBDF(int sel,unsigned int vendorID)
 {
     unsigned int *mapBuf,mmioaddr, phyAddr,data;
     int fd;

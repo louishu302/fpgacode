@@ -15,7 +15,7 @@ class pcie:public acpi{
     void cfg_w(unsigned int BusN,unsigned int DevN, unsigned int FunN,unsigned int offset,unsigned int data);
     unsigned int mmio_r(unsigned long addr);
     void mmio_w(unsigned long addr,unsigned int data);
-    unsigned int get_rcBDF(int sel);//sel: 0x1-rcBusN;0x2-rcDevN;0x3-rcFunN
+    unsigned int get_rcBDF(int sel,unsigned int ep_vendorID);//sel: 0x1-rcBusN;0x2-rcDevN;0x3-rcFunN
     unsigned int get_cap(unsigned int BusN,unsigned int DevN,unsigned int FunN,int sel);
      //sel:0x1-speed; 0x2-width;0x3-L0sEn;0x4-L1En;0x5-L0sCap;0x6-L1Cap
 
