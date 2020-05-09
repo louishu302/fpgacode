@@ -26,33 +26,33 @@ int main()
     unsigned int rcspeed,rcwidth,rcL0sEn,rcL1En,rcL0sCap,rcL1Cap;
    // unsigned int vendorID=0x1179;   //Toshiba
     unsigned int vendorID=0x8086;   //Intel Ethernet card
-
-    pcie t;
-    BusN=t.scan_pcie_tree(vendorID,0x1);
-    DevN=t.scan_pcie_tree(vendorID,0x2);
-    FunN=t.scan_pcie_tree(vendorID,0x3);
+    pcie *pPCIE = new pcie;
+    
+    BusN=pPCIE->scan_pcie_tree(vendorID,0x1);
+    DevN=pPCIE->scan_pcie_tree(vendorID,0x2);
+    FunN=pPCIE->scan_pcie_tree(vendorID,0x3);
     cout<<"BusN="<<BusN<<"/t DevN="<<DevN<<"/t FunN="<<FunN<<endl;
-    mmioaddr=t.acpi_table();
+    mmioaddr=pPCIE->acpi_table();
     cout<<"acpi mmio base address=0x"<<hex<<mmioaddr<<endl;
-    rcBusN=t.get_rcBDF(0x1);
-    rcDevN=t.get_rcBDF(0x2);
-    rcFunN=t.get_rcBDF(0x3);
+    rcBusN=pPCIE->get_rcBDF(0x1);
+    rcDevN=pPCIE->get_rcBDF(0x2);
+    rcFunN=pPCIE->get_rcBDF(0x3);
     cout<<"rcBusN="<<rcBusN<<"/t rcDevN="<<rcDevN<<"/t rcFunN="<<rcFunN<<endl;
 
     /*
-    speed=t.get_cap(BusN,DevN,FunN,0x1);
-    width=t.get_cap(BusN,DevN,FunN,0x2);
-    L0sEn=t.get_cap(BusN,DevN,FunN,0x3);
-    L1En=t.get_cap(BusN,DevN,FunN,0x4);
-    L0sCap=t.get_cap(BusN,DevN,FunN,0x5);
-    L1Cap=t.get_cap(BusN,DevN,FunN,0x6);
+    speed=pPCIE->get_cap(BusN,DevN,FunN,0x1);
+    width=pPCIE->get_cap(BusN,DevN,FunN,0x2);
+    L0sEn=pPCIE->get_cap(BusN,DevN,FunN,0x3);
+    L1En=pPCIE->get_cap(BusN,DevN,FunN,0x4);
+    L0sCap=pPCIE->get_cap(BusN,DevN,FunN,0x5);
+    L1Cap=pPCIE->get_cap(BusN,DevN,FunN,0x6);
 
-    rcspeed=t.get_cap(rcBusN,rcDevN,rcFunN,0x1);
-    rcwidth=t.get_cap(rcBusN,rcDevN,rcFunN,0x2);
-    rcL0sEn=t.get_cap(rcBusN,rcDevN,rcFunN,0x3);
-    rcL1En=t.get_cap(rcBusN,rcDevN,rcFunN,0x4);
-    rcL0sCap=t.get_cap(rcBusN,rcDevN,rcFunN,0x5);
-    rcL1Cap=t.get_cap(rcBusN,rcDevN,rcFunN,0x6);
+    rcspeed=pPCIE->get_cap(rcBusN,rcDevN,rcFunN,0x1);
+    rcwidth=pPCIE->get_cap(rcBusN,rcDevN,rcFunN,0x2);
+    rcL0sEn=pPCIE->get_cap(rcBusN,rcDevN,rcFunN,0x3);
+    rcL1En=pPCIE->get_cap(rcBusN,rcDevN,rcFunN,0x4);
+    rcL0sCap=pPCIE->get_cap(rcBusN,rcDevN,rcFunN,0x5);
+    rcL1Cap=pPCIE->get_cap(rcBusN,rcDevN,rcFunN,0x6);
 
     cout<<"================================================================================="<<endl;
     cout<<"     BusN /t DevN /t FunN /t speed /t width /t L0sEn /t L1En /t L0sCap /t L1Cap  "<<endl;
